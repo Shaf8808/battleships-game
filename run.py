@@ -37,14 +37,20 @@ def place_ships(board):
         # loop until ship fits and doesn't overlap
         while True:
             if board == COMPUTER_BOARD:
-                orientation, row, column = random.choice(["H", "V"]), random.randint(0, 7), random.randint(0, 7)
+                orientation = random.choice(["H", "V"])
+                row, column = random.randint(0, 7), random.randint(0, 7)
                 if check_ship_fits(ship_length, row, column, orientation):
-
+                    # checks to see if ship overlaps
+                    if ship_overlaps(board, row, column, orientation, ship_length) == False:
+                        # if not, the ship is placed
+                        if orientation == "H":
+                            for x in range(column, column + ship_length):
+                                board[row][x] = "X"
 
 
 def check_ship_fits(ship_length, row, column, orientation):
     if orientation == "H":
-        if column + ship_length > *:
+        if column + ship_length > 8:
             return False
         else:
             return True
