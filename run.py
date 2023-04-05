@@ -16,3 +16,39 @@ LETTERS_TO_NUMBERS = {
     'H': 7
 }
 
+
+def print_board(board):
+    print("  A B C D E F G H")
+    print("  +-+-+-+-+-+-+-+")
+    row_number = 1
+    for row in board:
+        print("%d|%s|" % (row_number, "|".join(row)))
+        row_number += 1
+
+
+def place_ships(board):
+    pass
+
+
+def check_ship_fits():
+    pass
+
+
+def ship_overlaps():
+    pass
+
+
+def user_input():
+    pass
+
+
+def count_hit_ships():
+    pass
+
+
+def turn(board):
+    pass
+
+
+while True:
+
