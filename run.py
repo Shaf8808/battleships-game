@@ -18,6 +18,11 @@ LETTERS_TO_NUMBERS = {
 
 
 def print_board(board):
+    """
+    The structure and layout of the board
+    which is presented to the user once they
+    begin the game
+    """
     print("  A B C D E F G H")
     print("  +-+-+-+-+-+-+-+")
     row_number = 1
@@ -27,11 +32,27 @@ def print_board(board):
 
 
 def place_ships(board):
-    pass
+    # loop through length of ships
+    for ship_length in LENGTH_OF_SHIPS:
+        # loop until ship fits and doesn't overlap
+        while True:
+            if board == COMPUTER_BOARD:
+                orientation, row, column = random.choice(["H", "V"]), random.randint(0, 7), random.randint(0, 7)
+                if check_ship_fits(ship_length, row, column, orientation):
 
 
-def check_ship_fits():
-    pass
+
+def check_ship_fits(ship_length, row, column, orientation):
+    if orientation == "H":
+        if column + ship_length > *:
+            return False
+        else:
+            return True
+    else:
+        if row + ship_length > 8:
+            return False
+        else:
+            return True
 
 
 def ship_overlaps():
@@ -50,5 +71,5 @@ def turn(board):
     pass
 
 
-while True:
+# while True:
 
