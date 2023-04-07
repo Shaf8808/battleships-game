@@ -48,7 +48,7 @@ def place_ships(board):
                                 board[row][x] = "X"
                         else:
                             for x in range(row, row + ship_length):
-                                board[i][column] = "X"
+                                board[x][column] = "X"
                         break
 
 
@@ -66,7 +66,7 @@ def check_ship_fits(ship_length, row, column, orientation):
             return True
 
 
-def ship_overlaps():
+def ship_overlaps(board, row, column, orientation, ship_length):
     pass
 
 
