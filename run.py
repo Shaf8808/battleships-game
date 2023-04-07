@@ -46,6 +46,11 @@ def place_ships(board):
                         if orientation == "H":
                             for x in range(column, column + ship_length):
                                 board[row][x] = "X"
+                        else:
+                            for x in range(row, row + ship_length):
+                                board[i][column] = "X"
+                        break
+
 
 
 def check_ship_fits(ship_length, row, column, orientation):
