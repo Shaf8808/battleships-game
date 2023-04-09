@@ -50,6 +50,22 @@ def place_ships(board):
                             for x in range(row, row + ship_length):
                                 board[x][column] = "X"
                         break
+            else:
+                place_ship = True
+                print('Place the ship with a length of ' + str(ship_length))
+                row, column, orientation = user_input(place_ship)
+                if check_ship_fits(ship_length, row, column, orientation):
+                    #check if ship overlaps
+                        if ship_overlaps(board, row, column, orientation, ship_length) == False:
+                            #place ship
+                            if orientation == "H":
+                                for i in range(column, column + ship_length):
+                                    board[row][i] = "X"
+                            else:
+                                for i in range(row, row + ship_length):
+                                    board[i][column] = "X"
+                            print_board(PLAYER_BOARD)
+                            break 
 
 
 
@@ -67,7 +83,15 @@ def check_ship_fits(ship_length, row, column, orientation):
 
 
 def ship_overlaps(board, row, column, orientation, ship_length):
-    pass
+    if orientation == "H":
+        for x in range(column, column + ship_length):
+            if board[row][x] == "X":
+                return True
+    else:
+        for x in range(row, row + ship_length):
+            if board[x][column] == "X":
+                return True
+    return False
 
 
 def user_input():
@@ -80,6 +104,7 @@ def count_hit_ships():
 
 def turn(board):
     pass
+
 
 
 # while True:
