@@ -139,13 +139,70 @@ def user_input(place_ship):
         return row, column        
 
 
-def count_hit_ships():
-    pass
+def count_hit_ships(board):
+    """
+    Increments number of hit ships if
+    guess is correct
+    """
+    count = 0
+    for row in board:
+        for column in row:
+            if column == "X":
+                count += 1
+    return count 
 
 
 def turn(board):
-    pass
+    """
+    Function for both the user's turn as well as the computer's
+    turn. Informs user and computer if they have selected the same
+    position as a previous turn
+    """
+    if board == PLAYER_GUESS_BOARD:
+        row, column = user_input(PLAYER_GUESS_BOARD)
+        if board[row][column] == "-":
+            turn(board)
+        elif board[row][column] == "X":
+            turn(board)
+        elif COMPUTER_BOARD[row][column] == "X":
+            board[row][column] = "X"
+        else:
+            board[row][column] = "-"
+    else:
+        row, column = random.randint(0,7), random.randint(0,7)
+        if board[row][column] == "-":
+            turn(board)
+        elif board[row][column] == "X":
+            turn(board)
+        elif PLAYER_BOARD[row][column] == "X":
+            board[row][column] = "X"
+        else:
+            board[row][column] = "-"
 
 
-# while True:
+place_ships(COMPUTER_BOARD)
+print_board(COMPUTER_BOARD)
+print_board(PLAYER_BOARD)
+place_ships(PLAYER_BOARD)
+
+while True:
+     # Loop for player's turn that continuously
+     # runs until the user wins
+    while True:
+        print('Guess a battleship location')
+        print_board(PLAYER_GUESS_BOARD)
+        turn(PLAYER_GUESS_BOARD)
+        break
+    if count_hit_ships(PLAYER_GUESS_BOARD) == 17:
+        print("You win!")
+        break   
+    # Computer's turn
+    while True:
+        turn(COMPUTER_GUESS_BOARD)
+        break           
+    print_board(COMPUTER_GUESS_BOARD)   
+    if count_hit_ships(COMPUTER_GUESS_BOARD) == 17:
+        print("Sorry, the computer won.")
+        break
+
 
