@@ -68,7 +68,6 @@ def place_ships(board):
                             break 
 
 
-
 def check_ship_fits(ship_length, row, column, orientation):
     if orientation == "H":
         if column + ship_length > 8:
@@ -94,8 +93,50 @@ def ship_overlaps(board, row, column, orientation, ship_length):
     return False
 
 
-def user_input():
-    pass
+def user_input(place_ship):
+    if place_ship == True:
+        while True:
+            try: 
+                orientation = input("Enter orientation (H or V): ").upper()
+                if orientation == "H" or orientation == "V":
+                    break
+            except TypeError:
+                print('Enter a valid orientation H or V')
+        while True:
+            try: 
+                row = input("Enter the row 1-8 of the ship: ")
+                if row in '12345678':
+                    row = int(row) - 1
+                    break
+            except ValueError:
+                print('Enter a valid number between 1-8')
+        while True:
+            try: 
+                column = input("Enter the column of the ship: ").upper()
+                if column in 'ABCDEFGH':
+                    column = LETTERS_TO_NUMBERS[column]
+                    break
+            except KeyError:
+                print('Enter a valid letter between A-H')
+        return row, column, orientation 
+    else:
+        while True:
+            try: 
+                row = input("Enter the row 1-8 of the ship: ")
+                if row in '12345678':
+                    row = int(row) - 1
+                    break
+            except ValueError:
+                print('Enter a valid number between 1-8')
+        while True:
+            try: 
+                column = input("Enter the column of the ship: ").upper()
+                if column in 'ABCDEFGH':
+                    column = LETTERS_TO_NUMBERS[column]
+                    break
+            except KeyError:
+                print('Enter a valid letter between A-H')
+        return row, column        
 
 
 def count_hit_ships():
@@ -104,7 +145,6 @@ def count_hit_ships():
 
 def turn(board):
     pass
-
 
 
 # while True:
